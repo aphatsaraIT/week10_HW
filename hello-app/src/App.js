@@ -1,9 +1,10 @@
-import axios from 'axios'
+import axios from "axios";
 import React, { useState } from "react";
 import "./App.css";
 
-function App({ host }) {
-  const hostname =  host.substring(0, host.indexOf(":"));
+function App() {
+  const hostname = `${window.location.protocol}//${window.location.hostname}`;
+  console.log(hostname);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [numbers, setNumbers] = useState([]);
@@ -20,12 +21,12 @@ function App({ host }) {
       setImage(e.target.result);
     };
   };
-  const sendImage = async () => {
-    let sendNumber = numbers.split(" ");
+  const submit = async () => {
+    let listNumbers = numbers.split(" ");
     try {
       const result = await axios.post(
         `http://${hostname}:8088/process-image`,
-        { image: images, name: name, surname: surname, numbers: sendNumber },
+        { image: images, name: name, surname: surname, numbers: listNumbers },
         {
           headers: {
             "Content-Type": "application/json",
@@ -49,7 +50,7 @@ function App({ host }) {
               <div className="form-group">
                 <label for="name">Your Name</label>
                 <input
-                   onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   type="text"
                   className="form-control"
                   id="name"
@@ -69,7 +70,7 @@ function App({ host }) {
               <div className="form-group" style={{ marginLeft: 10 }}>
                 <label for="number">Your Susent ID</label>
                 <input
-                 onChange={(e) => setNumbers(e.target.value)}
+                  onChange={(e) => setNumbers(e.target.value)}
                   type="text"
                   className="form-control"
                   id="number"
@@ -79,49 +80,55 @@ function App({ host }) {
             </div>
             <div className="form-group">
               <input id="input" type="file" onChange={() => handleChange()} />
-             </div>
-            <button type="submit" className="btn btn-primary"  onClick={() => sendImage()}>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={() => submit()}
+            >
               Submit
             </button>
           </form>
         </div>
 
         {images && (
+          <div
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <img
+              id="images"
+              width={500}
+              height={350}
+              src={images}
+              alt="img1"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+        )}
         <div
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <img
-            id="images"
-            width={500}
-            height={350}
-            src={images}
-            alt="img1"
-            style={{ objectFit: "contain" }}
+          {showImage && (
+            <img
+              id="image2"
+              width={500}
+              height={350}
+              src={showImage}
+              alt="img output"
+              style={{ objectFit: "contain" }}
             />
+          )}
         </div>
-      )}
-      <div style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        {showImage && (
-          <img
-            id="image2"
-            width={500}
-            height={350}
-            src={showImage}
-            alt="img output"
-            style={{ objectFit: "contain" }}
-          />
+        {data && (
+          <div>
+            <div>{data.name + " " + data.surname}</div>
+            <ul>
+              {data.numbers.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
         )}
-      </div>
-      {data && (
-        <div>
-          <div>{data.name + " " + data.surname}</div>
-          <ul>
-            {data.numbers.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      )}
       </div>
     </div>
   );
