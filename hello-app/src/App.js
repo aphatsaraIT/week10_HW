@@ -23,6 +23,7 @@ function App() {
   };
   const submit = async () => {
     let listNumbers = numbers.split(" ");
+    console.log("submit")
     try {
       const result = await axios.post(
         `${hostname}:8088/process-image`,
@@ -36,9 +37,10 @@ function App() {
       setData(result.data);
       setShowImage(result.data.processed_image);
       console.log("post");
-      console.log(result.data.processed_image);
+      console.log(`${hostname}:8088/process-image`);
     } catch (e) {
       console.log(e);
+      console.log("error ma");
     }
   };
   return (
@@ -137,6 +139,3 @@ function App() {
 }
 
 export default App;
-export const getServerSideProps = async (context) => ({
-  props: { host: context.req.headers.host || null },
-});
