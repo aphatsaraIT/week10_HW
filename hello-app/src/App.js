@@ -20,38 +20,18 @@ function App() {
       setImage(e.target.result);
     };
   };
-  // const submit = async () => {
-  //   let listNumbers = numbers.split(" ");
-  //   console.log("check");
-  //   console.log(`${hostname}:8088/process-image`);
-  //   try {
-  //     console.log("submit");
-  //     console.log(images);
-  //     console.log(name);
-  //     console.log(surname);
-  //     const result = await axios.post(
-  //       `${hostname}:8088/process-image`,
-  //       { image: images, name: name, surname: surname, numbers: listNumbers },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     setData(result.data);
-  //     setShowImage(result.data.processed_image);
-  //     console.log("post");
-  //   } catch (e) {
-  //     console.log(e);
-  //     console.log("error ma");
-  //   }
-  // };
-  const sendImage = async () => {
-    let sendNumber = numbers.split(" ");
+  const submitPost = async () => {
+    let listNumbers = numbers.split(" ");
+    console.log("check");
+    console.log(`${hostname}:8088/process-image`);
     try {
+      console.log("submit");
+      console.log(images);
+      console.log(name);
+      console.log(surname);
       const result = await axios.post(
         `http://${hostname}:8088/process-image`,
-        { image: images, name: name, surname: surname, numbers: sendNumber },
+        { image: images, name: name, surname: surname, numbers: listNumbers },
         {
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +86,7 @@ function App() {
             <div className="form-group">
               <input id="input" type="file" onChange={() => handleChange()} />
             </div>
-          <button type="submit" className="btn btn-primary" onClick={() => sendImage()}>Submit</button>
+          <button type="submit" className="btn btn-primary" onClick={() => submitPost()}>Submit</button>
           
         </div>
 
