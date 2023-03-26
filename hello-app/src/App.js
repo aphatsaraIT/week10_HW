@@ -35,6 +35,8 @@ function App() {
       );
       setData(result.data);
       setShowImage(result.data.processed_image);
+      console.log("post");
+      console.log(result.data.processed_image);
     } catch (e) {
       console.log(e);
     }
