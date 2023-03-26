@@ -20,18 +20,38 @@ function App() {
       setImage(e.target.result);
     };
   };
-  const submit = async () => {
-    let listNumbers = numbers.split(" ");
-    console.log("check");
-    console.log(`${hostname}:8088/process-image`);
+  // const submit = async () => {
+  //   let listNumbers = numbers.split(" ");
+  //   console.log("check");
+  //   console.log(`${hostname}:8088/process-image`);
+  //   try {
+  //     console.log("submit");
+  //     console.log(images);
+  //     console.log(name);
+  //     console.log(surname);
+  //     const result = await axios.post(
+  //       `${hostname}:8088/process-image`,
+  //       { image: images, name: name, surname: surname, numbers: listNumbers },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     setData(result.data);
+  //     setShowImage(result.data.processed_image);
+  //     console.log("post");
+  //   } catch (e) {
+  //     console.log(e);
+  //     console.log("error ma");
+  //   }
+  // };
+  const sendImage = async () => {
+    let sendNumber = numbers.split(" ");
     try {
-      console.log("submit");
-      console.log(images);
-      console.log(name);
-      console.log(surname);
       const result = await axios.post(
-        `${hostname}:8088/process-image`,
-        { image: images, name: name, surname: surname, numbers: listNumbers },
+        `http://${hostname}:8088/process-image`,
+        { image: images, name: name, surname: surname, numbers: sendNumber },
         {
           headers: {
             "Content-Type": "application/json",
@@ -40,10 +60,8 @@ function App() {
       );
       setData(result.data);
       setShowImage(result.data.processed_image);
-      console.log("post");
     } catch (e) {
       console.log(e);
-      console.log("error ma");
     }
   };
   return (
@@ -89,12 +107,12 @@ function App() {
               <input id="input" type="file" onChange={() => handleChange()} />
             </div>
             <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={() => submit()}
-            >
-              Submit
-            </button>
+            className="btn btn-secondary"
+            style={{ padding: "5px", borderRadius: "5px", backgroundColor: 'pink', color: 'white' }}
+            onClick={() => sendImage()}
+          >
+            Send
+          </button>
           </form>
         </div>
 
