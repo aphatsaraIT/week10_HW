@@ -70,10 +70,10 @@ function App() {
         <div className="col-12 col-md-6 offset-md-3">
           <h2 className="my-4 text-center">Software Devtool</h2>
 
-          <form>
+          <form onSubmit={this.onSubmit}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div className="form-group">
-                <label for="name">Your Name</label>
+                <label htmlFor="name">Your Name</label>
                 <input
                   onChange={(e) => setName(e.target.value)}
                   type="text"
@@ -83,7 +83,7 @@ function App() {
                 />
               </div>
               <div className="form-group" style={{ marginLeft: 10 }}>
-                <label for="surname">Your Surname</label>
+                <label htmlFor="surname">Your Surname</label>
                 <input
                   onChange={(e) => setSurname(e.target.value)}
                   type="text"
@@ -93,7 +93,7 @@ function App() {
                 />
               </div>
               <div className="form-group" style={{ marginLeft: 10 }}>
-                <label for="number">Your Susent ID</label>
+                <label htmlFor="number">Your Susent ID</label>
                 <input
                   onChange={(e) => setNumbers(e.target.value)}
                   type="text"
@@ -106,13 +106,7 @@ function App() {
             <div className="form-group">
               <input id="input" type="file" onChange={() => handleChange()} />
             </div>
-            <button
-            className="btn btn-secondary"
-            style={{ padding: "5px", borderRadius: "5px", backgroundColor: 'pink', color: 'white' }}
-            onClick={() => sendImage()}
-          >
-            Send
-          </button>
+          <button type="submit" className="btn btn-primary" onClick={() => sendImage()}>Submit</button>
           </form>
         </div>
 
@@ -139,7 +133,7 @@ function App() {
               width={500}
               height={350}
               src={showImage}
-              alt="img output"
+              alt="imgoutput"
               style={{ objectFit: "contain" }}
             />
           )}
