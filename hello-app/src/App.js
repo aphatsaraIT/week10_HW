@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App({ host }) {
-  const hostname =  host;
+  const hostname =  host.substring(0, host.indexOf(":"));
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [numbers, setNumbers] = useState([]);
@@ -102,14 +102,14 @@ function App({ host }) {
       )}
       <div style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         {showImage && (
-          {/* <Image
+          <img
             id="image2"
             width={500}
             height={350}
             src={showImage}
             alt="img output"
             style={{ objectFit: "contain" }}
-          /> */}
+          />
         )}
       </div>
       {data && (
