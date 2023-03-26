@@ -14,7 +14,6 @@ function App() {
   const handleChange = (event) => {
     let input = document.getElementById("input");
     var fReader = new FileReader();
-    console.log(name);
     fReader.readAsDataURL(input.files[0]);
     fReader.onloadend = (e) => {
       console.log(e.target.result);
@@ -23,7 +22,8 @@ function App() {
   };
   const submit = async () => {
     let listNumbers = numbers.split(" ");
-    
+    console.log("check");
+    console.log(`${hostname}:8088/process-image`);
     try {
       console.log("submit");
       console.log(images);
@@ -41,7 +41,6 @@ function App() {
       setData(result.data);
       setShowImage(result.data.processed_image);
       console.log("post");
-      console.log(`${hostname}:8088/process-image`);
     } catch (e) {
       console.log(e);
       console.log("error ma");
