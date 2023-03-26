@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const hostname = `${window.location.protocol}//${window.location.hostname}`;
+  const hostname = `${window.location.protocol}://${window.location.hostname}`;
   console.log(hostname);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -25,7 +25,7 @@ function App() {
     let listNumbers = numbers.split(" ");
     try {
       const result = await axios.post(
-        `http://${hostname}:8088/process-image`,
+        `${hostname}:8088/process-image`,
         { image: images, name: name, surname: surname, numbers: listNumbers },
         {
           headers: {
