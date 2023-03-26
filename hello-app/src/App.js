@@ -23,8 +23,12 @@ function App() {
   };
   const submit = async () => {
     let listNumbers = numbers.split(" ");
-    console.log("submit")
+    
     try {
+      console.log("submit");
+      console.log(images);
+      console.log(name);
+      console.log(surname);
       const result = await axios.post(
         `${hostname}:8088/process-image`,
         { image: images, name: name, surname: surname, numbers: listNumbers },
