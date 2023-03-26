@@ -10,12 +10,6 @@ function App({ host }) {
   const [images, setImage] = useState(null);
   const [showImage, setShowImage] = useState(null);
   const [data, setData] = useState(null);
-  const onChangeNameHandler = (name) => {
-    setName(name);
-  };
-  const onChangeSurnameHandler = (surname) => {
-    setSurname(surname);
-  };
   const handleChange = (event) => {
     let input = document.getElementById("input");
     var fReader = new FileReader();
