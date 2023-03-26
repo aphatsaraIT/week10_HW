@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const hostname = `${window.location.protocol}//${window.location.hostname}`;
+  const hostname = `${window.location.hostname}`;
   console.log(hostname);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
