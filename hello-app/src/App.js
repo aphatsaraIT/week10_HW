@@ -70,7 +70,7 @@ function App() {
         <div className="col-12 col-md-6 offset-md-3">
           <h2 className="my-4 text-center">Software Devtool</h2>
 
-          <form onSubmit={this.onSubmit}>
+          
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div className="form-group">
                 <label htmlFor="name">Your Name</label>
@@ -107,7 +107,7 @@ function App() {
               <input id="input" type="file" onChange={() => handleChange()} />
             </div>
           <button type="submit" className="btn btn-primary" onClick={() => sendImage()}>Submit</button>
-          </form>
+          
         </div>
 
         {images && (
