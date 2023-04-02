@@ -9,7 +9,7 @@ services:
     command: python app.py
     depends_on:
       redis:
-        condition: service_healthy
+#         condition: service_healthy
     healthcheck: 
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 15s
@@ -31,7 +31,7 @@ services:
     entrypoint: nodemon server.js
     depends_on:
       db:
-        condition: service_healthy 
+#         condition: service_healthy 
     volumes:
       - ./result:/app
     ports:
@@ -47,9 +47,9 @@ services:
     image: 63070188/worker:1.0
     depends_on:
       redis:
-        condition: service_healthy 
+#         condition: service_healthy 
       db:
-        condition: service_healthy 
+#         condition: service_healthy 
     networks:
       - back-tier
 
@@ -85,7 +85,7 @@ services:
     profiles: ["seed"]
     depends_on:
       vote:
-        condition: service_healthy 
+#         condition: service_healthy 
     networks:
       - front-tier
     restart: "no"
