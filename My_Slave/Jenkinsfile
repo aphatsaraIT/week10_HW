@@ -23,6 +23,14 @@ pipeline {
                 }
           }
         }
+        stage('Test stage') {
+            steps {
+                dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
+                    echo "Start . ."
+                    sh "docker-compose down"
+                }
+            }
+        }
         stage('Start stage') {
             steps {
                 dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
