@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Trigged') {
             steps {
-                echo "Hello $DOCKERHUB_CREDENTIALS_USR from Slave"
+                echo "Hello $DOCKERHUB_CREDENTIALS_USR from Slave2"
             }
         }
         stage('Login Stage') {
