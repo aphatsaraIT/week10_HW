@@ -11,14 +11,13 @@ services:
       redis:
         condition: service_healthy
     healthcheck: 
-      test: ["CMD", "curl", "-f", "http://localhost"]
-      interval: 15s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health" || bash -c 'kill -s 15 -1 && (sleep 10; kill -s 9 -1)"]
+      interval: 5m
+      timeout: 2m
+      retries: 6
+      start_period: 45s
     volumes:
      - ./vote:/app
-    restart: always
     ports:
       - "5000:80"
     networks:
@@ -35,7 +34,6 @@ services:
         condition: service_healthy 
     volumes:
       - ./result:/app
-    restart: always
     ports:
       - "5001:80"
       - "5858:5858"
@@ -47,7 +45,6 @@ services:
     build:
       context: ./worker
     image: 63070188/worker:1.0
-    restart: always
     depends_on:
       redis:
         condition: service_healthy 
