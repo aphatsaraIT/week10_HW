@@ -24,7 +24,7 @@ pipeline {
         }
          stage('Build docker') {
             steps {
-                dir('w10_compose') { // change directory to Lab_docker_Jenkins
+                dir('week10_HW') { // change directory to Lab_docker_Jenkins
                     sh 'docker-compose build'
                 }
             }
