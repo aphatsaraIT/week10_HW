@@ -11,7 +11,7 @@ services:
       redis:
         condition: service_healthy
     healthcheck: 
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health" || bash -c 'kill -s 15 -1 && (sleep 10; kill -s 9 -1)"]
+      test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 5m
       timeout: 2m
       retries: 6
