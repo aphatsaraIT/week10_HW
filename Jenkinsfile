@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Push Stage') {
             steps {
-                dir('w10_compose') { // change directory to Lab_docker_Jenkins
+                dir('week10_HW') { // change directory to Lab_docker_Jenkins
                     echo "Push : Current path is ${pwd()}"
                     sh "docker-compose push"
                 }
@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Trigger Slave Dockerhub last up') {
             steps {
-                dir('w10_compose') { // change directory to Lab_docker_Jenkins
+                dir('week10_HW') { // change directory to Lab_docker_Jenkins
                     echo "Trigger : calling Slave job . . ."
                     sh 'echo "HELLO ${DOCKERHUB_CREDENTIALS_USR}"'
                     build job: 'slave', parameters: [string(name: 'DOCKERHUB_CREDENTIALS_USR', value: env.DOCKERHUB_CREDENTIALS_USR), string(name: 'DOCKERHUB_CREDENTIALS_PSW', value: env.DOCKERHUB_CREDENTIALS_PSW)]
